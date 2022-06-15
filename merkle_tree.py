@@ -92,7 +92,7 @@ class MerkleTree:
             next_level_nodes.append(current_level[-1])
         return next_level_nodes
 
-    def create_proof_of_inclusion(self, index):
+    def generate_proof(self, index):
         """
         function will be used to create proof of inclusion for a given node indexed at 'index'
         1 at the beginning will note that leaf is assigned from the right,
@@ -123,9 +123,9 @@ class MerkleTree:
             current_level = self._evaluate_next_level(current_level)
         return proof_string
 
-    def verify_proof_of_inclusion(self, value, proof):
+    def validate_proof(self, value, proof):
         """
-        for a given proof verify the proof is indeed for the provided value.
+        for a given proof of inclusion verify the proof is indeed for the provided value.
         """
         # hash value
         value = hashlib.sha256(value.encode('utf-8')).hexdigest()
